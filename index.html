@@ -1,0 +1,274 @@
+<!-- test -->
+line2<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Amira Gameel, AI Trainer and Data Annotator. Chatbot response evaluation, image generation and editing evaluation, Arabic annotation, verbatim transcription and voice recording.">
+<meta property="og:title" content="Amira Gameel, AI Trainer & Data Annotator">
+<meta property="og:description" content="AI training and evaluation in Arabic and English, since 2019.">
+<meta property="og:type" content="website">
+<title>Amira Gameel Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F3F5F8; --surface:#FFFFFF; --ink:#141C28; --muted:#566172; --line:#D8DDE5;
+  --accent:#C2255C; --accent-soft:#FBE7EE;
+  --pass:#2B8A3E; --pass-soft:#E3F4E6; --fail:#C4460B; --fail-soft:#FCEBDD;
+  --display:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#0E131A; --surface:#161D27; --ink:#E7EBF1; --muted:#9AA5B4; --line:#2A3340;
+    --accent:#F0679A; --accent-soft:#3A1826;
+    --pass:#69DB7C; --pass-soft:#16301C; --fail:#FFA25C; --fail-soft:#3A2210;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#0E131A; --surface:#161D27; --ink:#E7EBF1; --muted:#9AA5B4; --line:#2A3340;
+  --accent:#F0679A; --accent-soft:#3A1826;
+  --pass:#69DB7C; --pass-soft:#16301C; --fail:#FFA25C; --fail-soft:#3A2210;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;padding-inline:20px;padding-block:0}
+.wrap{max-width:960px;margin-inline:auto;padding-block:48px 64px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0;text-wrap:balance}
+h2{font-size:1.75rem;font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.125rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.section{display:flex;flex-direction:column;gap:20px}
+.section-head{display:flex;flex-direction:column;gap:6px;max-width:62ch}
+.section-head p{color:var(--muted)}
+
+/* Hero with annotation box */
+.hero{display:flex;flex-direction:column;gap:28px}
+.bbox{position:relative;align-self:flex-start;max-width:100%;padding:22px 26px 18px;border:2px dashed var(--accent);margin-top:18px}
+.bbox .tag{position:absolute;top:-15px;left:-2px;background:var(--accent);color:var(--surface);font-family:var(--mono);font-size:.75rem;padding:3px 10px;letter-spacing:.04em;white-space:nowrap}
+.bbox .h{position:absolute;width:10px;height:10px;background:var(--surface);border:2px solid var(--accent)}
+.h.tl{top:-6px;left:-6px}.h.tr{top:-6px;right:-6px}.h.bl{bottom:-6px;left:-6px}.h.br{bottom:-6px;right:-6px}
+.hero h1{font-size:clamp(2.6rem,8vw,4.75rem);font-weight:700;letter-spacing:-.03em}
+.role{font-family:var(--display);font-size:clamp(1.15rem,3vw,1.5rem);font-weight:500;color:var(--muted);margin-top:6px}
+.lede{font-size:1.125rem;max-width:62ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-weight:500;font-size:.95rem;padding:10px 16px;border-radius:6px;text-decoration:none;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fact{padding:16px 16px 16px 0;display:flex;flex-direction:column;gap:4px}
+.fact + .fact{padding-left:16px;border-left:1px solid var(--line)}
+.fact b{font-weight:600;font-size:.98rem}
+
+/* Capabilities */
+.caps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cap{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.cap .code{font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.06em}
+.cap p{color:var(--muted);font-size:.95rem}
+
+/* Worked example */
+.example{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.ex-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.ex-grid{display:grid;grid-template-columns:5fr 7fr}
+.ex-prompt{padding:20px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:14px}
+.ex-prompt .input{font-size:.92rem;color:var(--muted)}
+.ex-prompt blockquote{margin:0;font-size:1.02rem;padding-left:14px;border-left:3px solid var(--accent)}
+.ex-prompt .note{background:var(--ground);border-radius:6px;padding:14px;font-size:.92rem;display:flex;flex-direction:column;gap:6px}
+.rubric{list-style:none;margin:0;padding:0}
+.rubric li{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:start;padding:12px 20px;border-bottom:1px solid var(--line)}
+.rubric li:last-child{border-bottom:0}
+.rid{font-family:var(--mono);font-size:.8rem;color:var(--muted);padding-top:2px}
+.rtext{font-size:.95rem;font-weight:500}
+.rtext small{display:block;color:var(--muted);font-size:.87rem;font-weight:400;margin-top:2px}
+.verdict{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.06em;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.verdict.pass{color:var(--pass);background:var(--pass-soft)}
+.verdict.fail{color:var(--fail);background:var(--fail-soft)}
+.ex-score{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 20px;border-top:1px solid var(--line);background:var(--ground);font-size:.92rem}
+.ex-score b{font-variant-numeric:tabular-nums}
+
+/* Highlights */
+.highlights{display:flex;flex-direction:column}
+.hl{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--line)}
+.hl:last-child{border-bottom:1px solid var(--line)}
+.hl p{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{font-family:var(--mono);font-size:.72rem;padding:3px 9px;border:1px solid var(--line);border-radius:999px;color:var(--ink);background:var(--surface)}
+
+/* Experience */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:20px}
+.timeline li{display:grid;grid-template-columns:104px 1fr;gap:16px}
+.when{font-family:var(--mono);font-size:.8rem;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.timeline p{color:var(--muted);font-size:.93rem}
+.timeline .main h3{color:var(--accent)}
+.stack{display:flex;flex-direction:column;gap:22px}
+.kv{display:flex;flex-direction:column;gap:8px}
+.kv ul{margin:0;padding-left:18px;color:var(--muted);font-size:.95rem}
+
+/* Contact */
+.contact{background:var(--ink);color:var(--ground);border-radius:12px;padding:36px;display:flex;flex-direction:column;gap:22px}
+.contact h2{color:var(--ground)}
+.contact .eyebrow{color:color-mix(in srgb,var(--ground) 65%,transparent)}
+.clist{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.citem{display:flex;flex-direction:column;gap:6px;padding:16px;border:1px solid color-mix(in srgb,var(--ground) 22%,transparent);border-radius:8px;min-width:0}
+.citem .v{font-family:var(--mono);font-size:.9rem;overflow-wrap:anywhere;user-select:all}
+.citem a{color:var(--ground)}
+.copy{align-self:flex-start;font-family:var(--mono);font-size:.72rem;background:transparent;color:var(--ground);border:1px solid color-mix(in srgb,var(--ground) 40%,transparent);border-radius:4px;padding:3px 8px;cursor:pointer}
+footer{font-size:.8rem;color:var(--muted)}
+
+@media screen and (max-width:760px){
+  .wrap{padding-block:32px 48px;gap:44px}
+  .facts{grid-template-columns:1fr 1fr}
+  .fact:nth-child(3){padding-left:0;border-left:0}
+  .fact:nth-child(n+3){border-top:1px solid var(--line)}
+  .caps{grid-template-columns:1fr}
+  .ex-grid{grid-template-columns:1fr}
+  .ex-prompt{border-right:0;border-bottom:1px solid var(--line)}
+  .rubric li{grid-template-columns:36px 1fr;padding:12px 16px}
+  .rubric .verdict{grid-column:2;justify-self:start}
+  .hl{grid-template-columns:1fr;gap:8px}
+  .two{grid-template-columns:1fr}
+  .clist{grid-template-columns:1fr}
+  .contact{padding:24px}
+}
+@media screen and (min-width:761px) and (max-width:900px){.caps{grid-template-columns:1fr 1fr}}
+
+@media (prefers-reduced-motion:no-preference){.btn{transition:transform .15s}.btn:hover{transform:translateY(-1px)}}
+</style>
+
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="bbox" aria-label="Name">
+      <span class="tag">label: ai_trainer · ar / en</span>
+      <span class="h tl"></span><span class="h tr"></span><span class="h bl"></span><span class="h br"></span>
+      <h1>Amira Gameel</h1>
+      <div class="role">AI Trainer &amp; Data Annotator</div>
+    </div>
+    <p class="lede">I help teams build better AI models by evaluating what they produce. I rate and compare chatbot responses, check AI-generated and AI-edited images against the user's request, and annotate Arabic and English data across text, image, audio and video, always working to the project's guidelines and explaining every rating clearly.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#contact">Get in touch</a>
+      <a class="btn" href="https://www.linkedin.com/in/amira-gameel-767057163" target="_blank" rel="noopener">LinkedIn profile</a>
+    </div>
+    <div class="facts">
+      <div class="fact"><span class="eyebrow">Based in</span><b>Menoufia, Egypt · Remote</b></div>
+      <div class="fact"><span class="eyebrow">AI training since</span><b>2019</b></div>
+      <div class="fact"><span class="eyebrow">Languages</span><b>Arabic (native) · English</b></div>
+      <div class="fact"><span class="eyebrow">Data types</span><b>Text · Image · Audio · Video</b></div>
+    </div>
+  </header>
+
+  <section class="section" aria-labelledby="what">
+    <div class="section-head">
+      <span class="eyebrow">What I do</span>
+      <h2 id="what">Evaluation and annotation skills</h2>
+    </div>
+    <div class="caps">
+      <article class="cap"><span class="code">TEXT · LLM</span><h3>Chatbot response evaluation</h3><p>Rate and compare answers from models such as ChatGPT, Claude and Gemini for accuracy, helpfulness, instruction following and tone, with a written justification for each rating.</p></article>
+      <article class="cap"><span class="code">IMAGE · RUBRICS</span><h3>Image generation &amp; editing evaluation</h3><p>One year writing rubric questions from image requests, checking each one in the output, flagging visual problems, and spotting copyrighted or third-party content.</p></article>
+      <article class="cap"><span class="code">ARABIC · DIALECTS</span><h3>Arabic data annotation</h3><p>Labeling, classification and quality review in Arabic and English, including Egyptian, Saudi and Emirati dialects.</p></article>
+      <article class="cap"><span class="code">AUDIO · TEXT</span><h3>Verbatim transcription</h3><p>Transcribing speech exactly as spoken, including fillers and non-speech sounds such as laughter or coughing, following grammar rules and each project's style guide.</p></article>
+      <article class="cap"><span class="code">AUDIO · VOICE</span><h3>Voice recording</h3><p>Recording Arabic and English voice data for speech collection projects, following script, audio quality and environment requirements.</p></article>
+      <article class="cap"><span class="code">SEARCH · VIDEO</span><h3>Search &amp; media rating</h3><p>Judging search queries, results and video content against relevance and quality guidelines, and contributing to AI research studies.</p></article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="sample">
+    <div class="section-head">
+      <span class="eyebrow">How I work</span>
+      <h2 id="sample">A sample rubric evaluation</h2>
+      <p>This is how I turn an image request into yes/no rubric questions, answer each one with evidence from the output image, and sum up the result. The example was written for this portfolio and contains no client data.</p>
+    </div>
+    <div class="example">
+      <div class="ex-top"><span>Task type: image editing · user photo · rubric fulfillment</span><span>Illustrative example</span></div>
+      <div class="ex-grid">
+        <div class="ex-prompt">
+          <span class="eyebrow">Input</span>
+          <p class="input">The user's own photo of a living room with a red armchair next to a window, taken in daylight.</p>
+          <span class="eyebrow">Request</span>
+          <blockquote>Add a golden retriever puppy sleeping on the red armchair and make the lighting look like sunset. Keep everything else the same.</blockquote>
+          <div class="note">
+            <span class="eyebrow">Evaluator note</span>
+            <p>4 of 5 criteria met. The puppy was added as requested, asleep on the red armchair, and the rest of the original photo was preserved. R4 fails: the lighting was not changed, so the scene still shows cool daylight with no warm, low sun.</p>
+          </div>
+        </div>
+        <ol class="rubric">
+          <li><span class="rid">R1</span><span class="rtext">Was a golden retriever puppy added to the image?<small>Yes. A golden retriever puppy now appears, with the breed's golden coat and puppy proportions.</small></span><span class="verdict pass">YES</span></li>
+          <li><span class="rid">R2</span><span class="rtext">Is the puppy sleeping?<small>Yes. Its eyes are closed and it lies curled up, so the puppy is asleep as requested.</small></span><span class="verdict pass">YES</span></li>
+          <li><span class="rid">R3</span><span class="rtext">Is the puppy on the red armchair?<small>Yes. It lies on the seat of the existing red armchair, not on the floor or a new chair.</small></span><span class="verdict pass">YES</span></li>
+          <li><span class="rid">R4</span><span class="rtext">Does the lighting look like sunset?<small>No. The room keeps its original cool daylight, with no warm or low-angle light as requested.</small></span><span class="verdict fail">NO</span></li>
+          <li><span class="rid">R5</span><span class="rtext">Is the rest of the original photo unchanged?<small>Yes. Furniture, walls, window and framing match the input; only the requested edit was made.</small></span><span class="verdict pass">YES</span></li>
+        </ol>
+      </div>
+      <div class="ex-score"><span>Criteria met <b>4 / 5</b></span><span>Visual artifacts: <b>none found</b></span></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="projects">
+    <div class="section-head">
+      <span class="eyebrow">Project highlights</span>
+      <h2 id="projects">Selected work</h2>
+      <p>Client names and task details are kept private under confidentiality agreements.</p>
+    </div>
+    <div class="highlights">
+      <div class="hl"><h3>Image generation &amp; editing evaluation</h3><div><p>For about a year, evaluated chatbot image outputs built from real users' photos and requests: creating new images, adding elements to a photo, or editing it. Wrote rubric questions for each request, judged whether each was fulfilled, and checked outputs for copyrighted and third-party content.</p><div class="chips"><span class="chip">Rubric writing</span><span class="chip">Image rating</span><span class="chip">Copyright</span><span class="chip">Third-party content</span><span class="chip">Visual QA</span></div></div></div>
+      <div class="hl"><h3>Chatbot output evaluation</h3><div><p>Evaluated responses from large language models against quality and relevance guidelines, comparing answers side by side and writing detailed feedback on why one response is better.</p><div class="chips"><span class="chip">LLM evaluation</span><span class="chip">Side-by-side rating</span><span class="chip">Written feedback</span></div></div></div>
+      <div class="hl"><h3>Verbatim transcription</h3><div><p>Transcribed Arabic and English audio word for word, marking fillers, hesitations and non-speech sounds, and applying each project's grammar and formatting rules across different transcription tools.</p><div class="chips"><span class="chip">Verbatim</span><span class="chip">Non-speech tags</span><span class="chip">Style guides</span></div></div></div>
+      <div class="hl"><h3>Voice data &amp; research studies</h3><div><p>Recorded Arabic voice data across dialects for speech projects, and took part in AI research studies.</p><div class="chips"><span class="chip">Voice recording</span><span class="chip">Egyptian · Saudi · Emirati</span><span class="chip">Research studies</span></div></div></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="exp">
+    <div class="section-head">
+      <span class="eyebrow">Background</span>
+      <h2 id="exp">Experience &amp; education</h2>
+    </div>
+    <div class="two">
+      <ol class="timeline">
+        <li class="main"><span class="when">2019 – Now</span><div><h3>AI Training Specialist, Freelance</h3><p>Annotation, rating, classification, transcription, evaluation and recording for AI companies, through platforms including Outlier, Prolific, Alignerr and RWS.</p></div></li>
+        <li><span class="when">2024 – 2025</span><div><h3>Online Store Coordinator</h3><p>Pixel Perfect</p></div></li>
+        <li><span class="when">2022 – 2024</span><div><h3>Data Entry &amp; Administration</h3><p>Al-Gamia al-Sharia</p></div></li>
+        <li><span class="when">2019</span><div><h3>Bachelor of Commerce, Accounting</h3><p>Faculty of Commerce, English Section</p></div></li>
+      </ol>
+      <div class="stack">
+        <div class="kv"><span class="eyebrow">Languages</span><ul><li>Arabic: native, with Egyptian, Saudi and Emirati dialects</li><li>English: very good, for reading guidelines and writing feedback</li></ul></div>
+        <div class="kv"><span class="eyebrow">Platforms &amp; tools</span><ul><li>AI training platforms: Outlier, Prolific, Alignerr, RWS</li><li>Google Drive, Microsoft Word, Microsoft Excel</li><li>Creates AI images and video with ChatGPT and Google Veo, which helps when judging generated media</li></ul></div>
+        <div class="kv"><span class="eyebrow">Working style</span><ul><li>Follows detailed guidelines closely</li><li>Clear, structured written feedback</li><li>Organized, fast learner, steady under deadlines</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="c">
+    <div class="section-head"><span class="eyebrow">Contact</span><h2 id="c">Open to remote AI training and evaluation projects</h2></div>
+    <div class="clist">
+      <div class="citem"><span class="eyebrow">Email</span><span class="v" id="em">amiragameel962@gmail.com</span><button class="copy" data-copy="amiragameel962@gmail.com" type="button">Copy</button></div>
+      <div class="citem"><span class="eyebrow">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/amira-gameel-767057163" target="_blank" rel="noopener">linkedin.com/in/amira-gameel-767057163</a></div>
+    </div>
+  </section>
+
+  <footer>© 2026 Amira Gameel · Menoufia, Egypt</footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=b.getAttribute('data-copy'),old=b.textContent;
+    function done(msg){b.textContent=msg;setTimeout(function(){b.textContent=old},1600)}
+    function fallback(){var v=b.parentNode.querySelector('.v');var r=document.createRange();r.selectNodeContents(v);var s=window.getSelection();s.removeAllRanges();s.addRange(r);done('Selected')}
+    try{navigator.clipboard.writeText(t).then(function(){done('Copied')},fallback)}catch(e){fallback()}
+  });
+});
+</script>
+
+</body>
+</html>
