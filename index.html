@@ -76,6 +76,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .example{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .ex-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.78rem;color:var(--muted)}
 .ex-grid{display:grid;grid-template-columns:5fr 7fr}
+.ex-images{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+.ex-images figure{margin:0;position:relative;background:var(--surface)}
+.ex-images img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.ex-images figcaption{position:absolute;left:10px;top:10px;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;background:var(--ink);color:var(--ground);padding:3px 8px;border-radius:4px}
 .ex-prompt{padding:20px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:14px}
 .ex-prompt .input{font-size:.92rem;color:var(--muted)}
 .ex-prompt blockquote{margin:0;font-size:1.02rem;padding-left:14px;border-left:3px solid var(--accent)}
@@ -186,27 +190,29 @@ footer{font-size:.8rem;color:var(--muted)}
     <div class="section-head">
       <span class="eyebrow">How I work</span>
       <h2 id="sample">A sample rubric evaluation</h2>
-      <p>This is how I turn an image request into yes/no rubric questions, answer each one with evidence from the output image, and sum up the result. The example was written for this portfolio and contains no client data.</p>
+      <p>This is how I turn an image request into yes/no rubric questions, answer each one with evidence from the output image, and sum up the result. The example and its images were made for this portfolio with ChatGPT and contain no client data.</p>
     </div>
     <div class="example">
       <div class="ex-top"><span>Task type: image editing · user photo · rubric fulfillment</span><span>Illustrative example</span></div>
+      <div class="ex-images">
+        <figure><img src="before.jpg" alt="Input photo: a sunlit living room with a red armchair next to a window" loading="lazy"><figcaption>Input photo</figcaption></figure>
+        <figure><img src="after.jpg" alt="Output image: a golden retriever puppy asleep on the red armchair, with the same daytime light" loading="lazy"><figcaption>Output</figcaption></figure>
+      </div>
       <div class="ex-grid">
         <div class="ex-prompt">
-          <span class="eyebrow">Input</span>
-          <p class="input">The user's own photo of a living room with a red armchair next to a window, taken in daylight.</p>
           <span class="eyebrow">Request</span>
           <blockquote>Add a golden retriever puppy sleeping on the red armchair and make the lighting look like sunset. Keep everything else the same.</blockquote>
           <div class="note">
             <span class="eyebrow">Evaluator note</span>
-            <p>4 of 5 criteria met. The puppy was added as requested, asleep on the red armchair, and the rest of the original photo was preserved. R4 fails: the lighting was not changed, so the scene still shows cool daylight with no warm, low sun.</p>
+            <p>4 of 5 criteria met. The puppy was added as requested, asleep on the red armchair, and the rest of the photo was kept. R4 fails: the lighting was not changed, so the scene still shows bright daytime sun and a blue sky instead of a sunset.</p>
           </div>
         </div>
         <ol class="rubric">
-          <li><span class="rid">R1</span><span class="rtext">Was a golden retriever puppy added to the image?<small>Yes. A golden retriever puppy now appears, with the breed's golden coat and puppy proportions.</small></span><span class="verdict pass">YES</span></li>
-          <li><span class="rid">R2</span><span class="rtext">Is the puppy sleeping?<small>Yes. Its eyes are closed and it lies curled up, so the puppy is asleep as requested.</small></span><span class="verdict pass">YES</span></li>
-          <li><span class="rid">R3</span><span class="rtext">Is the puppy on the red armchair?<small>Yes. It lies on the seat of the existing red armchair, not on the floor or a new chair.</small></span><span class="verdict pass">YES</span></li>
-          <li><span class="rid">R4</span><span class="rtext">Does the lighting look like sunset?<small>No. The room keeps its original cool daylight, with no warm or low-angle light as requested.</small></span><span class="verdict fail">NO</span></li>
-          <li><span class="rid">R5</span><span class="rtext">Is the rest of the original photo unchanged?<small>Yes. Furniture, walls, window and framing match the input; only the requested edit was made.</small></span><span class="verdict pass">YES</span></li>
+          <li><span class="rid">R1</span><span class="rtext">Was a golden retriever puppy added to the image?<small>Yes. A golden retriever puppy now appears, with a golden coat, floppy ears and puppy proportions.</small></span><span class="verdict pass">YES</span></li>
+          <li><span class="rid">R2</span><span class="rtext">Is the puppy sleeping?<small>Yes. Its eyes are closed and it lies curled up with its head resting on its paws.</small></span><span class="verdict pass">YES</span></li>
+          <li><span class="rid">R3</span><span class="rtext">Is the puppy on the red armchair?<small>Yes. It lies on the seat of the existing red armchair, against the cream cushion.</small></span><span class="verdict pass">YES</span></li>
+          <li><span class="rid">R4</span><span class="rtext">Does the lighting look like sunset?<small>No. The light is the same as in the input: bright daytime sun, with a blue sky and green trees outside the window. There is no orange sky or low evening light.</small></span><span class="verdict fail">NO</span></li>
+          <li><span class="rid">R5</span><span class="rtext">Is the rest of the original photo unchanged?<small>Yes. The window, walls, furniture, plants and rug match the input. The puppy only covers part of the cushion and throw where it lies.</small></span><span class="verdict pass">YES</span></li>
         </ol>
       </div>
       <div class="ex-score"><span>Criteria met <b>4 / 5</b></span><span>Visual artifacts: <b>none found</b></span></div>
