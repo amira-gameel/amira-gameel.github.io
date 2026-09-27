@@ -95,6 +95,30 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .verdict.fail{color:var(--fail);background:var(--fail-soft)}
 .ex-score{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 20px;border-top:1px solid var(--line);background:var(--ground);font-size:.92rem}
 .ex-score b{font-variant-numeric:tabular-nums}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{font-family:var(--body);font-size:.92rem;font-weight:500;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.sxs-prompt{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.sxs-prompt blockquote{margin:0;font-size:1.02rem;padding-left:14px;border-left:3px solid var(--accent)}
+.sxs-resp{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+.resp{padding:18px 20px;display:flex;flex-direction:column;gap:10px;font-size:.92rem}
+.resp + .resp{border-left:1px solid var(--line)}
+.resp-head{display:flex;justify-content:space-between;gap:8px;font-family:var(--mono);font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.resp ul,.resp ol{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.crit-wrap{overflow-x:auto;border-bottom:1px solid var(--line)}
+.crit{width:100%;border-collapse:collapse;font-size:.92rem}
+.crit th,.crit td{padding:10px 20px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.crit tr:last-child td{border-bottom:0}
+.crit th{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.crit td:not(:first-child),.crit th:not(:first-child){width:130px}
+.crit small{display:block;color:var(--muted);font-size:.8rem;margin-top:4px}
+.sxs-overall{display:grid;grid-template-columns:auto 1fr;gap:24px;padding:18px 20px;background:var(--ground);align-items:start}
+.scale{display:flex;flex-direction:column;gap:8px}
+.scale-dots{display:flex;gap:6px}
+.scale-dots span{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);font-family:var(--mono);font-size:.68rem;display:grid;place-items:center;color:var(--muted)}
+.scale-dots span.on{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.scale-labels{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.sxs-overall .note{display:flex;flex-direction:column;gap:6px;font-size:.92rem}
 
 /* Highlights */
 .highlights{display:flex;flex-direction:column}
@@ -139,6 +163,11 @@ footer{font-size:.8rem;color:var(--muted)}
   .hl{grid-template-columns:1fr;gap:8px}
   .two{grid-template-columns:1fr}
   .clist{grid-template-columns:1fr}
+  .sxs-resp{grid-template-columns:1fr}
+  .resp + .resp{border-left:0;border-top:1px solid var(--line)}
+  .sxs-overall{grid-template-columns:1fr}
+  .crit th,.crit td{padding:8px 12px}
+  .crit td:not(:first-child),.crit th:not(:first-child){width:auto}
   .contact{padding:24px}
 }
 @media screen and (min-width:761px) and (max-width:900px){.caps{grid-template-columns:1fr 1fr}}
@@ -189,10 +218,14 @@ footer{font-size:.8rem;color:var(--muted)}
   <section class="section" aria-labelledby="sample">
     <div class="section-head">
       <span class="eyebrow">How I work</span>
-      <h2 id="sample">A sample rubric evaluation</h2>
-      <p>This is how I turn an image request into yes/no rubric questions, answer each one with evidence from the output image, and sum up the result. The example and its images were made for this portfolio with ChatGPT and contain no client data.</p>
+      <h2 id="sample">Sample evaluations</h2>
+      <p>Two worked examples of how I evaluate AI output: an image edit checked against yes/no rubric questions, and two chatbot responses compared side by side. Both were made for this portfolio (the images with ChatGPT) and contain no client data.</p>
     </div>
-    <div class="example">
+    <div class="tabs" role="tablist" aria-label="Sample evaluations">
+      <button class="tab" role="tab" id="tab-img" aria-selected="true" aria-controls="panel-img" type="button">Image edit · rubric</button>
+      <button class="tab" role="tab" id="tab-sxs" aria-selected="false" aria-controls="panel-sxs" type="button">Chatbot responses · side by side</button>
+    </div>
+    <div class="example" id="panel-img" role="tabpanel" aria-labelledby="tab-img">
       <div class="ex-top"><span>Task type: image editing · user photo · rubric fulfillment</span><span>Illustrative example</span></div>
       <div class="ex-images">
         <figure><img src="before.jpg" alt="Input photo: a sunlit living room with a red armchair next to a window" loading="lazy"><figcaption>Input photo</figcaption></figure>
@@ -216,6 +249,58 @@ footer{font-size:.8rem;color:var(--muted)}
         </ol>
       </div>
       <div class="ex-score"><span>Criteria met <b>4 / 5</b></span><span>Visual artifacts: <b>none found</b></span></div>
+    </div>
+    <div class="example" id="panel-sxs" role="tabpanel" aria-labelledby="tab-sxs" hidden>
+      <div class="ex-top"><span>Task type: chatbot evaluation · side by side · 7-point scale</span><span>Illustrative example</span></div>
+      <div class="sxs-prompt">
+        <span class="eyebrow">User prompt</span>
+        <blockquote>I have a job interview tomorrow for a remote customer support role. Give me 3 short tips as bullet points, under 60 words in total.</blockquote>
+      </div>
+      <div class="sxs-resp">
+        <div class="resp">
+          <div class="resp-head"><span>Response A</span><span>30 words</span></div>
+          <ul>
+            <li>Test your internet, camera and mic an hour before the call.</li>
+            <li>Prepare one short story about calming an upset customer.</li>
+            <li>Read the company's help center so you know their products.</li>
+          </ul>
+        </div>
+        <div class="resp">
+          <div class="resp-head"><span>Response B</span><span>83 words</span></div>
+          <p>Great question! Here are some tips to help you shine:</p>
+          <ol>
+            <li>Research the company. Look at their website, mission and recent news so you can show real interest.</li>
+            <li>Practice common questions like "Tell me about yourself" and "Why do you want this job?"</li>
+            <li>Dress professionally, even for a video call, because first impressions matter.</li>
+            <li>Prepare a few questions to ask the interviewer at the end.</li>
+            <li>Get a good night's sleep and eat breakfast so you feel fresh and focused.</li>
+          </ol>
+          <p>Good luck, you've got this!</p>
+        </div>
+      </div>
+      <div class="crit-wrap">
+        <table class="crit">
+          <thead><tr><th>Criterion</th><th>Response A</th><th>Response B</th></tr></thead>
+          <tbody>
+            <tr><td>Gives exactly 3 tips</td><td><span class="verdict pass">YES</span></td><td><span class="verdict fail">NO</span><small>Gives 5 tips</small></td></tr>
+            <tr><td>Stays under 60 words</td><td><span class="verdict pass">YES</span><small>30 words</small></td><td><span class="verdict fail">NO</span><small>83 words</small></td></tr>
+            <tr><td>Uses bullet points</td><td><span class="verdict pass">YES</span></td><td><span class="verdict fail">NO</span><small>Numbered list</small></td></tr>
+            <tr><td>Fits a remote customer support interview</td><td><span class="verdict pass">YES</span></td><td><span class="verdict fail">NO</span><small>Generic advice</small></td></tr>
+            <tr><td>Accurate and safe</td><td><span class="verdict pass">YES</span></td><td><span class="verdict pass">YES</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="sxs-overall">
+        <div class="scale">
+          <span class="eyebrow">Overall preference</span>
+          <div class="scale-dots" aria-label="Rated 1 of 7: A is much better"><span class="on">1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></div>
+          <div class="scale-labels"><span>A much better</span><span>B much better</span></div>
+        </div>
+        <div class="note">
+          <span class="eyebrow">Justification</span>
+          <p>Response A follows every instruction: three tips, bullet points and 30 words. Each tip is specific to a remote support interview. Response B is friendly and accurate, but it gives five tips in 83 words as a numbered list, and its advice would fit any job.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -271,6 +356,14 @@ document.querySelectorAll('.copy').forEach(function(b){
     function done(msg){b.textContent=msg;setTimeout(function(){b.textContent=old},1600)}
     function fallback(){var v=b.parentNode.querySelector('.v');var r=document.createRange();r.selectNodeContents(v);var s=window.getSelection();s.removeAllRanges();s.addRange(r);done('Selected')}
     try{navigator.clipboard.writeText(t).then(function(){done('Copied')},fallback)}catch(e){fallback()}
+  });
+});
+document.querySelectorAll('[role=tab]').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('[role=tab]').forEach(function(o){
+      var on=o===t;o.setAttribute('aria-selected',on?'true':'false');
+      document.getElementById(o.getAttribute('aria-controls')).hidden=!on;
+    });
   });
 });
 </script>
